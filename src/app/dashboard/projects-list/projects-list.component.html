@@ -1,0 +1,94 @@
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="row col-sm-12">
+            <div class="col-sm-8">
+                <h3 class="m-subheader__title">
+                    Projects
+                </h3>
+            </div>
+            <div class="offset-2">
+                <button type="button" disabled class="btn m-btn--wide m-btn--pill btn-secondary">Today: <span
+                        style="color: red;">Feb 11</span></button>
+            </div>
+        </div>
+    </div>
+    <div class="row pt-2 col-sm-12">
+        <div class="col-sm-6 offset-6">
+            <div class="offset-2">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="m-content">
+    <div class="m-portlet">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <div class="col-sm-4">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text text-center"> Projects List </h3>
+                    </div>
+                    <div class="offset-9">
+                        <mat-form-field>
+                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                        </mat-form-field>
+                    </div>
+                    <div class="offset-1"></div>
+                    <button type="button" [routerLink]="['/dashboard/projects-add']" class="btn m-btn--square m-btn m-btn--custom">
+                        Add
+                    </button>
+                    <button type="button" class="ml-2 btn m-btn--square m-btn m-btn--custom">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="m-portlet__body">
+            <table mat-table [dataSource]="dataSource">
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef>Sr.No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="bank">
+                    <th mat-header-cell *matHeaderCellDef> Bank </th>
+                    <td mat-cell *matCellDef="let element"> {{element.bank}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="check_book_no">
+                    <th mat-header-cell *matHeaderCellDef> Check Book No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.check_book_no}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="payee_name">
+                    <th mat-header-cell *matHeaderCellDef> Payee Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.payee_name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="amount">
+                    <th mat-header-cell *matHeaderCellDef> Amount </th>
+                    <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="date_submit">
+                    <th mat-header-cell *matHeaderCellDef> Date of Submit </th>
+                    <td mat-cell *matCellDef="let element"> {{element.date_submit}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element" class="text-success"> {{element.status}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>
